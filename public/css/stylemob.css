@@ -1,0 +1,421 @@
+/* #### YOOTY #### */
+
+.container-mob {
+    width: 100vw;
+    height: 100vh;
+    background-color: #f6e34b;
+}
+
+.container-mob-inside {
+    width: 100vw;
+    height: 100vh;
+    padding: 40px 0;
+    background-color: #ffffff;
+}
+
+.pad-inside {
+    padding-left: 15px!important;
+    padding-right: 15px!important;
+}
+
+.container-mob-content {
+    padding: 0 15px;
+}
+
+.loginLogo-mob {
+    margin: 12vh auto 5vh;
+    width: 40vw;
+    max-width: 200px;
+    height: auto;
+}
+
+.menuLogo-mob {
+    width: auto;
+    height: 16px;
+    box-sizing: content-box;
+}
+
+.mobMenu {
+    width: 100vw;
+    position: fixed;
+    background-color: #f6e34b;
+    z-index: 333;
+}
+
+#topMobMenu {
+    height: 40px;
+    top: 0;
+    left: 0;
+    font-size: 22px;
+    padding: 5px 0 0 15px;
+    -webkit-box-shadow: 0 0 30px 0 rgba(0,0,0,0.15);
+    -moz-box-shadow: 0 0 30px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 0 30px 0 rgba(0,0,0,0.15);
+}
+
+#bottomMobMenu {
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    -webkit-box-shadow: 0 0 30px 0 rgba(0,0,0,0.15);
+    -moz-box-shadow: 0 0 30px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 0 30px 0 rgba(0,0,0,0.15);
+}
+
+.mobMenu-blank {
+    width: 100vw;
+    height: 40px;
+    position: fixed;
+    top:0;
+    z-index: 350;
+    font-size: 22px;
+    padding: 2px 15px 0;
+    background-color: #f6e34b;
+}
+
+#sectionName { position: absolute; left: 0; }
+
+#menuright { position: absolute; right: 0; top: 3px; height: auto; z-index: 360; text-align: right; }
+
+#menucenter { position: absolute; left: 50%; top: 1px; z-index: 355; width: 140px; margin-left: -70px; text-align: center; }
+
+#menuleft { position: absolute; left: 0; top: 3px; width: 340px; height: auto; z-index: 360; text-align: left; overflow: hidden; }
+
+#demandes { left: 15px; margin-top: 5px;}
+
+#rechercher {
+    width: 70px;
+    height: 70px;
+    background-color: #f6e34b;
+    border-radius: 50px;
+    left: 50%;
+    margin-left: -35px;
+    margin-top: -19px;
+    padding-top: 9px;
+}
+
+#ajouter { right: 15px; margin-top: 5px;}
+
+.icon-size1 { font-size: 18px; margin-bottom: -5px!important; }
+.icon-size2 { font-size: 26px; margin-bottom: -2px!important; }
+
+.iconbottmenu {padding-right: 0!important;}
+
+
+
+/* #### BUTTONS ####*/
+
+#buttonInformation {
+    display: inline-block;
+    width: 150px;
+    height: 28px;
+    background-color: #7b7b7b;
+    border-radius: 27px 0 0 27px;
+    -moz-border-radius: 27px 0 0 27px;
+    -webkit-border-radius: 27px 0 0 27px;
+    border: 0 solid #000000;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 28px;
+    margin-right: 0;
+}
+
+#buttonCompte {
+    display: inline-block;
+    width: 150px;
+    height: 28px;
+    background-color: #f0f0f0;
+    border-radius: 0 27px 27px 0;
+    -moz-border-radius: 0 27px 27px 0;
+    -webkit-border-radius: 0 27px 27px 0;
+    border: 0 solid #000000;
+    color: #010101;
+    font-size: 16px;
+    line-height: 28px;
+    margin-left: 0;
+}
+
+#buttonInformation-com {
+    display: inline-block;
+    width: 150px;
+    height: 28px;
+    background-color: #f0f0f0;
+    color: #010101;
+    border-radius: 27px 0 0 27px;
+    -moz-border-radius: 27px 0 0 27px;
+    -webkit-border-radius: 27px 0 0 27px;
+    border: 0 solid #000000;
+    font-size: 16px;
+    line-height: 28px;
+    margin-right: 0;
+}
+
+#buttonCompte-com {
+    display: inline-block;
+    width: 150px;
+    height: 28px;
+    background-color: #7b7b7b;
+    color: #ffffff;
+    border-radius: 0 27px 27px 0;
+    -moz-border-radius: 0 27px 27px 0;
+    -webkit-border-radius: 0 27px 27px 0;
+    border: 0 solid #000000;
+    font-size: 16px;
+    line-height: 28px;
+    margin-left: 0;
+}
+
+.topmobsumit {
+    font-size: 20px;
+    margin-top: 7px;
+}
+
+.edit-avatar-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border: 2px solid #fbb01f;
+    color: #fbb01f;
+    background-color: #ffffff;
+    font-size: 17px;
+    text-align: center;
+    line-height: 24px;
+    padding: 2px 0 0 5px;
+}
+
+.edit-avatar-btn-pos {
+    right: -10px;
+    margin-top: -35px;
+    z-index: 350;
+    cursor: pointer;
+}
+
+
+
+/*#### FORMS ####*/
+
+.editinfomob {
+    width: 90%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.prof-price-block {
+    width: 100vw;
+}
+
+.prof-price {
+    width: 145px;
+}
+
+.prof-ajouter {
+    text-decoration: underline!important;
+}
+
+.cp-mob {
+    padding-left: 0!important;
+}
+
+.notification-form-mob {
+    width: 75vw;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+
+
+/*#### FILTERS ####*/
+
+.filter-icon {
+    background-image: url('../images/Sliders.svg');
+    width: 24px;
+    height: 22px;
+    margin: 0 15px 20px auto;
+    cursor: pointer;
+    background-size: 100% 100%;
+    -o-background-size: 100% 100%; /* opera ≥ 9.5 */
+    -webkit-background-size: 100% 100%; /* Safari ≥ 5.0, Chrome ≥ 4.0 */
+    -moz-background-size: 100% 100%; /* Firefox ≥ 3.6 */
+}
+
+.filter-icon.filter-icon-active {
+    background-image: url('../images/back.svg');
+    width: 24px;
+    height: 22px;
+    cursor: pointer;
+    background-size: 100% 100%;
+    -o-background-size: 100% 100%; /* opera ≥ 9.5 */
+    -webkit-background-size: 100% 100%; /* Safari ≥ 5.0, Chrome ≥ 4.0 */
+    -moz-background-size: 100% 100%; /* Firefox ≥ 3.6 */
+
+    position: fixed;
+    left: 7px;
+    top: 9px;
+    z-index: 5360;
+    text-align: left;
+    transition: transform 0.4s ease-in;
+}
+
+.filter-screen {
+    z-index: 5000;
+    display: none;
+    position: absolute;
+    right: -100%;
+    top: 0;
+    height: 120%;
+    width: 100%;
+    background-color: #ffffff;
+    transition: transform 0.2s ease-in;
+}
+
+.message-screen { display: block; }
+.message-screen--filter-active { display: none!important; }
+
+.filter--active {
+    display: block!important;
+    transform: translateX(-100%);
+}
+
+#menufilter {
+    position: absolute;
+    left: 30px;
+    top: 3px;
+    width: 350px;
+    height: auto;
+    z-index: 5360;
+    text-align: left;
+}
+
+#topFilterMobMenu {
+    width: 100vw;
+    height: 40px;
+    position: relative;
+    background-color: #f6e34b;
+    top: 0;
+    left: 0;
+    font-size: 22px;
+    -webkit-box-shadow: 0 0 30px 0 rgba(0,0,0,0.15);
+    -moz-box-shadow: 0 0 30px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 0 30px 0 rgba(0,0,0,0.15);
+}
+
+.create-circle {
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    border: solid 1px #1d1d1b;
+    background-color: #E0E0E0;
+}
+
+.create-circle.active {
+    background-color: #f6e34b;;
+}
+
+.ok-ico-mob {
+    color: green;
+    font-size: 57px;
+}
+
+.conv-head-icons-mob {
+    right:0;
+    top:0;
+    margin-left: 5px;
+    margin-top: -4px;
+}
+
+.review-head-mob {
+    font-family: Myriad Pro Italic, serif;
+    font-size: 15px!important;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #010101;
+    position: relative;
+}
+
+.conv-send-mob {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    left: 0;
+    display: block;
+    height: 60px;
+    padding: 10px 15px;
+    background: white;
+    -webkit-box-shadow: 0 0 30px 0 rgba(0,0,0,0.15);
+    -moz-box-shadow: 0 0 30px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 0 30px 0 rgba(0,0,0,0.15);
+}
+
+.send-btn-mob {
+    background-image: url(../images/send.svg);
+    background-size: contain;
+    width: 38px;
+    height: 38px;
+    padding: 0!important;
+
+    display: block;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+}
+
+
+
+/* CONVERSATION POPUPS */
+
+.conv-popup-mob {
+    position: absolute;
+    z-index: 9999;
+    top: 39px;
+    left: 0;
+    background-color: #d1d1d1;
+    width: 100%;
+    height: auto;
+    padding: 20px 30px;
+}
+
+
+/* install banner for iOS */
+.ios-banner {
+    background-color: #E4E4E4;
+    border: 0 solid #F9F9F9;
+    border-radius: 10px;
+    color: #131313;
+    position: fixed;
+    width: 90vw;
+    /*height: 60px;*/
+    padding: 15px;
+    bottom:20px;
+    left: 5vw;
+    z-index: 9999;
+    -webkit-box-shadow: 0 0 30px 0 rgba(0,0,0,0.35);
+    -moz-box-shadow: 0 0 30px 0 rgba(0,0,0,0.35);
+    box-shadow: 0 0 30px 0 rgba(0,0,0,0.35);
+}
+
+.arr-banner {
+    background-image: url(../images/bannerarr.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: fixed;
+    bottom: 1px;
+    left: 50%;
+    margin-left: -15px;
+    width: 40px;
+    height: 40px;
+}
+
+.icon-install-banner {
+    width: 32px;
+    height: auto;
+}
+
+
+
+

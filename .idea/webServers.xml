@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="376cf1ff-b678-4c3e-8767-fccf2c8be166" name="YOOTY" url="http://54.38.47.37">
+        <fileTransfer rootFolder="/repo/yooty_dev/yooty" accessType="FTPS" host="54.38.47.37" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

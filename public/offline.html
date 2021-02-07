@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>YOOTY</title>
+
+    <meta name="theme-color" content="#f6e34b"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="lib/bootstrap.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+    <!-- ICONS -->
+    <script src="https://kit.fontawesome.com/11190384de.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+
+    <!-- MANIFEST -->
+    <link rel="manifest" href="manifest.json" />
+
+
+</head>
+
+<body style="background-color: #f6e34b;">
+    <div class="container" style="padding: 105px 30px;">
+        <p class="f-reg">We so sorry,<br />but for conversation you need<br />be&nbsp;connected to the internet.</p>
+        <div class="spacer60">&nbsp;</div>
+        <p class="f-bold">You YOOTY</p>
+    </div>
+
+
+    <!-- PWA -->
+    <script type="module">
+        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+
+        const el = document.createElement('pwa-update');
+        document.body.appendChild(el);
+    </script>
+
+</body>
+</html>
+

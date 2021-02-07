@@ -1,0 +1,67 @@
+/* #### YOOTY #### */
+
+.container-popup {
+    position: absolute;
+    width: 100vw;
+    top: 20vh;
+    left: 0;
+    text-align: center;
+}
+
+.popup-background {
+    position: fixed;
+    width: calc(100vw / 12 * 10);
+    max-width: 980px;
+    height: 50vh;
+    top:0;
+    left: 0;
+}
+@media (max-width: 1200px) and (min-width: 991px) {
+    .popup-background {
+        width: 810px;
+    }
+}
+@media (max-width: 990px) and (min-width: 769px) {
+    .popup-background {
+        width: 618px;
+    }
+}
+@media (max-width: 769px) and (min-width: 586px) {
+    .popup-background {
+        width: 100%;
+    }
+}
+@media (max-width: 585px) {
+    .popup-background {
+        width: 100%;
+    }
+}
+
+
+.container-note {
+    position: relative;
+    width: 82vw;
+    max-width: 430px;
+    height: auto;
+    background-color: #f6e34b;
+    color: #1d1d1b;
+    padding: 20px 30px;
+    margin: 0 auto;
+    z-index: 8000;
+    border-radius: 50px;
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.h-0 {
+    height: 0;
+}
+
+.fade-notification {
+    position: absolute;
+    z-index: 10500;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.5);
+}

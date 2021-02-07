@@ -1,0 +1,49 @@
+/* Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+/* Firefox */
+input[type=number]{
+    -moz-appearance: textfield;
+}
+
+.quantity-arrow-minus, .quantity-arrow-plus {
+    width: 28px!important;
+    height: 28px!important;
+    border: 0px #ffffff solid;
+    cursor: pointer;
+    background-size: contain;
+    color: transparent;
+    text-shadow: 0 0 0 black;
+    background-color: white;
+    background-repeat: no-repeat;
+    /*position: relative;*/
+    display: block;
+    /*margin: 5px 0;*/
+}
+
+.quantity-arrow-plus  {
+    background-image: url("../images/plus.svg");
+    bottom: 22px;
+    left:0;
+}
+.quantity-arrow-minus {
+    background-image: url("../images/minus.svg");
+    bottom: -12px;
+    left:0;
+}
+
+.quantity-num {
+    height: auto;
+    border: 0px #ffffff solid;
+    cursor: pointer;
+    text-align: center;
+    width: 110px!important;
+    background-color: #ecebeb;
+    border-radius: 15px;
+
+}
