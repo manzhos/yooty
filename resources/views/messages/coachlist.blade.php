@@ -45,7 +45,9 @@
                                             <div class="col-md-12">
                                                 <hr>
                                                 <div class="spacer10">&nbsp;</div>
+
                                                 <a href="{{ route('profiles.publicprofile', ['id' => $user->id]) }}" class="black" style="text-decoration: none;">
+                                                {{--<a onclick="location.href='/profile/publicprofile/{{$user->id}}?path='+window.location.href" class="black" style="text-decoration: none;">--}}
                                                     <img src="/uploads/avatars/{{ $user->avatar }}" class="coach-list-avatar">
                                                     <div class="d-inline-block" style="width: calc(100% - 175px);">
                                                         <p class="f-name_list_profile caps"><br />{{ $user->name }}&nbsp;{{ Str::substr($user->surname, 0, 1) }}</p>
@@ -88,6 +90,7 @@
         </div>
     </div>
 @endguest
+
 @endsection
 
 
@@ -136,7 +139,10 @@
                     @if ($user->id !== Illuminate\Support\Facades\Auth::user()->id)
                         <hr>
                         <div class="spacer10">&nbsp;</div>
+{{--
                         <a href="{{ route('profiles.publicprofile', $user->id) }}" class="black" style="text-decoration: none;">
+--}}
+                        <a onclick="location.href='/profile/publicprofile/{{$user->id}}?path='+window.location.href" class="black" style="text-decoration: none;">
                             <img src="/uploads/avatars/{{ $user->avatar }}" class="coach-list-avatar">
                             <div class="d-inline-block" style="width: calc(100% - 175px);">
                                 <p class="f-name_list_profile caps"><br />{{ $user->name }}&nbsp;{{ Str::substr($user->surname, 0, 1) }}</p>

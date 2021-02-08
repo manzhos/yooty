@@ -62,7 +62,9 @@
                                                 <span class="f-reg">Student</span>
                                             @endif
                                         </td>
-                                        <td class="col"><span class="f-reg">{{ $user->role->role }}</span></td>
+                                        <td class="col">
+                                            <span class="f-reg">{{ $user->role->role }}</span>
+                                        </td>
                                         <td class="col">
                                             @if($user->role->role === 'admin')
                                                 <form action="{{ route('admin.setroleuser', ['user_id' => $user->id]) }}" method="post">

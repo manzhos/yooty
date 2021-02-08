@@ -126,12 +126,8 @@
                                     @if($message->user_id != Illuminate\Support\Facades\Auth::user()->id)
                                         <div class="f-name_list_profile caps d-block">Professeur particulier</div>
                                         <div class="d-block">
-                                            <form action="{{ route('profiles.publicprofile', $message->user->id) }}" method="get" role="form">
-                                                @csrf
-                                                {{--<input hidden id="user_id" name="user_id" value="{{ $message->user->id }}" />--}}
-                                                <input hidden id="assistance" name="assistance" value="no" />
-                                                <input type="submit" class="f-tarif black blank-button underline" value="Voir le profil"/>
-                                            </form>
+                                            <a onclick="location.href='/profile/publicprofile/{{ $message->user->id }}?assistance=no&path='+window.location.href" style="cursor: pointer;">
+                                                <span class="f-tarif black blank-button underline" >Voir le profil</span></a>
                                         </div>
                                     @else
                                         <div class="d-block">&nbsp;</div>
@@ -181,7 +177,7 @@
                                         Veux-tu demander à {{ $message->user->name }}&nbsp;{{ Str::substr($message->user->surname, 0, 1) }} de devenir ton professeur particulier?
                                     </div>
                                     <div id="answer_button" class="col-md-5 text-right">
-                                        <a onclick="location.href='/profile/publicprofile/{{ $message->user->id }}'" class="button-conv-popup d-inline-block">Oui</a>
+                                        <a onclick="location.href='/profile/publicprofile/{{ $message->user->id }}?path='+window.location.href" class="button-conv-popup d-inline-block">Oui</a>
                                         <div class="spacer20_right">&nbsp;</div>
                                         <a href="#" class="button-conv-popup d-inline-block">Annuler</a>
                                     </div>

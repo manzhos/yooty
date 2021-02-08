@@ -129,7 +129,7 @@
                     Veux-tu demander à {{ $message->user->name }}&nbsp;{{ Str::substr($message->user->surname, 0, 1) }} de devenir ton professeur particulier?
                 </div>
                 <div id="answer_button" class="col-md-5 text-right">
-                    <a onclick="location.href='/profile/publicprofile/{{ $message->user->id }}'" class="button-conv-popup d-inline-block">Oui</a>
+                    <a onclick="location.href='/profile/publicprofile/{{ $message->user->id }}?path='+window.location.href" class="button-conv-popup d-inline-block">Oui</a>
                     <div class="spacer20_right">&nbsp;</div>
                     <a href="#" class="button-conv-popup d-inline-block">Annuler</a>
                 </div>

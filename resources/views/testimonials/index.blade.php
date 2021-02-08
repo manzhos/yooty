@@ -9,7 +9,10 @@
             <div class="col-md-2">&nbsp;</div>
             <div class="col-md-8">
                 <!--  Link to back (on profile)  -->
-                <a onclick="javascript:history.back(); return false;" style="cursor: pointer;"><i class="fas fa-angle-left" style="font-size: 12px"></i><span style="padding-left: 5px; text-decoration: underline;">Retour</span></a>
+                <a href="{{ route('profiles.publicprofile', ['id' => $user->id, 'path' => $backpath]) }}" style="cursor: pointer;">
+                    <i class="fas fa-angle-left black" style="font-size: 12px"></i>
+                    <span style="text-decoration: underline;" class="black">Retour</span>
+                </a>
                 <div class="spacer35">&nbsp;</div>
 
                 <h1 class="f-boldSE caps"> Témoignages sur {{ $user->name }}&nbsp;{{ Str::substr($user->surname, 0, 1) }}</h1>
@@ -74,7 +77,7 @@
     <div class="mobMenu-blank">
         <div class="position-relative">
             <div id="menuleft">
-                <a href="{{ route('profiles.publicprofile', ['id' => $user->id]) }}"
+                <a href="{{ route('profiles.publicprofile', ['id' => $user->id, 'path' => $backpath]) }}"
                    style="cursor: pointer;" class="black"><i class="fas fa-angle-left"></i>
                 </a>
             </div>

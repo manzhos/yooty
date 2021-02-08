@@ -22,7 +22,14 @@ class TestimonialController extends Controller
     public function index(Request $request)
     {
         $user = User::whereId($request->id)->firstOrFail();
-        return view('testimonials.index', compact('user'));
+
+        if($request->has('path')){
+            $backpath = $request->path;
+        }else{
+            $backpath = "javascript:history.back();"." return false;";
+        }
+
+        return view('testimonials.index', compact('user', 'backpath'));
     }
 
 
@@ -34,7 +41,14 @@ class TestimonialController extends Controller
     public function create(Request $request)
     {
         $user = User::whereId($request->id)->firstOrFail();
-        return view('testimonials.create', compact('user'));
+
+        if($request->has('path')){
+            $backpath = $request->path;
+        }else{
+            $backpath = "javascript:history.back();"." return false;";
+        }
+
+        return view('testimonials.create', compact('user', 'backpath'));
     }
 
 
@@ -56,7 +70,13 @@ class TestimonialController extends Controller
         ]);
         $testimonial -> save();
 
-        return view('testimonials.index',compact('user'));
+        if($request->has('path')){
+            $backpath = $request->path;
+        }else{
+            $backpath = "javascript:history.back();"." return false;";
+        }
+
+        return view('testimonials.index',compact('user', 'backpath'));
     }
 
 

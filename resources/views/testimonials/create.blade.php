@@ -20,7 +20,7 @@
                 <div class="col-md-2">&nbsp;</div>
                 <div class="col-md-8">
                     <!--  Link to back (on profile)  -->
-                    <a onclick="javascript:history.back(); return false;" style="cursor: pointer;"><i class="fas fa-angle-left" style="font-size: 12px"></i><span style="padding-left: 5px; text-decoration: underline;">Retour</span></a>
+                    <a href="{{ route('profiles.publicprofile', ['id' => $user->id, 'path' => $backpath]) }}" style="cursor: pointer;"><i class="fas fa-angle-left" style="font-size: 12px"></i><span style="padding-left: 5px; text-decoration: underline;">Retour</span></a>
                     <div class="spacer35">&nbsp;</div>
 
                     <h1 class="f-boldSE caps">Laisser un avis</h1>
@@ -70,14 +70,14 @@
     <!-- menu button in menu-line -->
     <div class="mobMenu-blank">
         <div class="position-relative">
-            <div id="menuleft"><a onclick="javascript:history.back(); return false;" style="cursor: pointer;" class="black"><i class="fas fa-angle-left"></i></a><span class="caps f-boldSE d-inline-block">Laisser un avis</span></div>
+            <div id="menuleft"><a href="{{ route('profiles.publicprofile', ['id' => $user->id, 'path' => $backpath]) }}" style="cursor: pointer;" class="black"><i class="fas fa-angle-left"></i></a><span class="caps f-boldSE d-inline-block">Laisser un avis</span></div>
             <div id="menucenter">&nbsp;</div>
         </div>
     </div>
 
     <div class="container-mob-inside pad-inside text-center">
         <div class="spacer35">&nbsp;</div>
-        <form action="{{ route('testimonial.store', ['id' => $user->id]) }}" method="post" role="form" id="edit_testimonial_form">
+        <form action="{{ route('testimonial.store', ['id' => $user->id, 'path' => $backpath]) }}" method="post" role="form" id="edit_testimonial_form">
             @csrf
             <textarea id="testimonial" name="testimonial" class="form-control-textarea text-left textarea-testimonial" placeholder="Vous pouvez en dire un peu plus sur lui.."></textarea>
 

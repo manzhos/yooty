@@ -323,15 +323,18 @@
                     $ids = $message->assistance()->where('user_id','=', \Illuminate\Support\Facades\Auth::user()->id)->get();
                 @endphp
                 <div class="text-center">
-                    @if(isset($ids[0]))
-                        <button class="yootyButtGrey inactive">Déjà appliqué</button>
+                    @if(\Illuminate\Support\Facades\Auth::user()->id === $message->user_id)
+                        <div>&nbsp;</div>
                     @else
-                        <form action="{{ route('assistance.apply',$message->id) }}" method="post" role="form" id="Offer assistance">
-                            @csrf
-                            <button type="submit" class="yootyButt">Proposez mon aide</button>
-                        </form>
+                        @if(isset($ids[0]))
+                            <button class="yootyButtGrey inactive">Déjà appliqué</button>
+                        @else
+                            <form action="{{ route('assistance.apply',['id' => $message->id]) }}" method="post" role="form" id="Offer assistance">
+                                @csrf
+                                <button type="submit" class="yootyButt">Proposez mon aide</button>
+                            </form>
+                        @endif
                     @endif
-                </div>
             </div>
         @endguest
         <div class="spacer80">&nbsp;</div>

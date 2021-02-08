@@ -69,13 +69,13 @@
                                 <div class="spacer10_left">&nbsp;</div>
                             @endif
 
-                            <a onclick="javascript:history.back(); return false;" style="cursor: pointer;"><button type="button" class="yootyButtGrey">BACK</button></a>
+                            <a href="{{$backpath}}"><button type="button" class="yootyButtGrey">BACK</button></a>
 
                             <div class="spacer35">&nbsp;</div>
                             <div>
-                                <a href="{{ route('testimonial.create', ['id' => $user->id]) }}" id="Write the testimonial" class="f-reg d-inline black">Rédiger un avis</a>
+                                <a href="{{ route('testimonial.create', ['id' => $user->id, 'path' => $backpath]) }}" id="Write the testimonial" class="f-reg d-inline black">Rédiger un avis</a>
                                 <div class="spacer20_right">&nbsp;</div>
-                                <a href="{{ route('testimonial.index', ['id' => $user->id]) }}" id="Read the testimonial" class="f-reg d-inline black">Témoignages</a>
+                                <a href="{{ route('testimonial.index', ['id' => $user->id, 'path' => $backpath]) }}" id="Read the testimonial" class="f-reg d-inline black">Témoignages</a>
                             </div>
 
                         </div>
@@ -98,7 +98,10 @@
     <!-- menu button in menu-line -->
     <div class="mobMenu-blank">
         <div class="position-relative">
+{{--
             <div id="menuleft"><a onclick="javascript:history.back(); return false;" style="cursor: pointer;" class="black"><i class="fas fa-angle-left"></i></a><span class="caps f-boldSE d-inline-block">PROFILE DE {{ $user->name }}&nbsp;{{ Str::substr($user->surname, 0, 1) }}</span></div>
+--}}
+            <div id="menuleft"><a href="{{$backpath}}" style="cursor: pointer;" class="black"><i class="fas fa-angle-left"></i></a><span class="caps f-boldSE d-inline-block">PROFILE DE {{ $user->name }}&nbsp;{{ Str::substr($user->surname, 0, 1) }}</span></div>
             <div id="menucenter">&nbsp;</div>
         </div>
     </div>
@@ -140,13 +143,13 @@
         <div class="spacer40">&nbsp;</div>
         <button type="button" class="yootyButt">Choisir ce helper</button>
         <div class="spacer10_left">&nbsp;</div>
-        <a href="/demandes"><button type="button" class="yootyButtGrey">BACK</button></a>
+        <a href="{{$backpath}}"><button type="button" class="yootyButtGrey">BACK</button></a>
 
         <div class="spacer35">&nbsp;</div>
         <div>
-            <a href="{{ route('testimonial.create', ['id' => $user->id]) }}" id="Write the testimonial" class="f-reg d-inline black underline">Rédiger un avis</a>
+            <a href="{{ route('testimonial.create', ['id' => $user->id, 'path' => $backpath]) }}" id="Write the testimonial" class="f-reg d-inline black underline">Rédiger un avis</a>
             <div class="spacer20_right">&nbsp;</div>
-            <a href="{{ route('testimonial.index', ['id' => $user->id]) }}" id="Read the testimonial" class="f-reg d-inline black underline">Laisser un avis</a>
+            <a href="{{ route('testimonial.index', ['id' => $user->id, 'path' => $backpath]) }}" id="Read the testimonial" class="f-reg d-inline black underline">Laisser un avis</a>
         </div>
 
         <div class="spacer80">&nbsp;</div>

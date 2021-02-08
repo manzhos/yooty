@@ -16,8 +16,8 @@ class CreateRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('role');
-            $table->boolean('blocked');
+            $table->string('role')->default('user');
+            $table->boolean('blocked')->default(false);
 
             $table->timestamps();
         });
