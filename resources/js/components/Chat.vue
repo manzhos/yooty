@@ -39,7 +39,7 @@
 
                                 <!-- Comment Button Block -->
                                 <div class="spacer10">&nbsp;</div>
-                                <div class="edit-btn-block">
+                                <div v-if="terminate === 0" class="edit-btn-block">
                                     <!-- EDIT Comment -->
                                     <!-- Button  -->
                                     <a href="#" class="yooty-edit-BTN yooty-btn-link yooty-BTN-comment d-inline-block" @click="showEdit.splice(comment.id, 1, !showEdit[comment.id])">

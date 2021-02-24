@@ -7,6 +7,7 @@ use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PaintController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UploadController;
@@ -133,6 +134,7 @@ Route::get('/profile/testimonial', [UserController::class, 'testimonial'])->name
 Route::get('/testimonial/create',[TestimonialController::class, 'create'])->name('testimonial.create');
 Route::post('/testimonial/store',[TestimonialController::class, 'store'])->name('testimonial.store');
 Route::get('/testimonial/index',[TestimonialController::class, 'index'])->name('testimonial.index');
+Route::get('/testimonial/index-popup',[TestimonialController::class, 'indexpopup'])->name('testimonial.index-popup');
 
 Route::get('/profile/review', [TestimonialController::class, 'review'])->name('profiles.reviews');
 
@@ -201,13 +203,16 @@ Route::get('/clear', function() {
 
 
 
-//// Notification route
+//// Notification routes
 Route::get('/bemycoach', [beMyCoach::class, 'toBroadcast'])->name('bemycoach');
 Route::get('/readytocoach', [CoachController::class, 'readytocoach'])->name('readytocoach');
 Route::post('/notcoach', [CoachController::class, 'notcoach'])->name('notcoach');
 
 Route::get('/signaler', [TestimonialController::class, 'signaler'])->name('signaler');
 
+
+//// Paint routes
+Route::get('/paint',[PaintController::class, 'paint'])->name('paint');
 
 
 //// Admin routes

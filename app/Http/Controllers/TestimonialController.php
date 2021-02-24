@@ -26,10 +26,23 @@ class TestimonialController extends Controller
         if($request->has('path')){
             $backpath = $request->path;
         }else{
-            $backpath = "javascript:history.back();"." return false;";
+            $backpath = 0;
         }
 
         return view('testimonials.index', compact('user', 'backpath'));
+    }
+
+    public function indexpopup(Request $request)
+    {
+        $user = User::whereId($request->id)->firstOrFail();
+
+        if($request->has('path')){
+            $backpath = $request->path;
+        }else{
+            $backpath = 0;
+        }
+
+        return view('testimonials.index-popup', compact('user', 'backpath'));
     }
 
 
@@ -45,7 +58,7 @@ class TestimonialController extends Controller
         if($request->has('path')){
             $backpath = $request->path;
         }else{
-            $backpath = "javascript:history.back();"." return false;";
+            $backpath = 0;
         }
 
         return view('testimonials.create', compact('user', 'backpath'));
@@ -73,7 +86,7 @@ class TestimonialController extends Controller
         if($request->has('path')){
             $backpath = $request->path;
         }else{
-            $backpath = "javascript:history.back();"." return false;";
+            $backpath = 0;
         }
 
         return view('testimonials.index',compact('user', 'backpath'));

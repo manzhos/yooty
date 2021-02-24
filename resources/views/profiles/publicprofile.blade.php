@@ -29,9 +29,9 @@
 
                             <!-- rating block -->
 
-                            @if($user->testimonial->count() < 0)
+                            @if($user->testimonial->count() > 0)
                                 <span class="f-rate_public_profile d-block">
-                                    {{ Str::of($user->testimonial->avg('rating'))->limit(3, '/') }}&nbsp;/&nbsp;5
+                                    {{ Str::of($user->testimonial->avg('rating'))->limit(3, ' /') }}&nbsp;5
                                 </span>
                                 <a href="{{ route('profiles.reviews', ['id' => $user->id]) }}" class="f-education_public_profile d-block black">
                                     {{ $user->testimonial->count() }} avis
@@ -39,7 +39,7 @@
                             @endif
 
                             <br />
-                            <div id="pop" class="position-absolute" style="z-index: 7700; left: 50%; margin-left: -82px; width: 164px;">
+                            <div id="pop" class="position-absolute" style="z-index: 1000; left: 50%; margin-left: -82px; width: 164px;">
                                 <confirm-profp v-bind:id="{{$user->id}}" v-bind:name="'{{$user->name}}'" v-bind:surname="'{{Str::substr($user->surname, 0, 1)}}'"></confirm-profp>
                             </div>
                         </div>
@@ -69,14 +69,53 @@
                                 <div class="spacer10_left">&nbsp;</div>
                             @endif
 
-                            <a href="{{$backpath}}"><button type="button" class="yootyButtGrey">BACK</button></a>
+                            <!-- check whether the profile was called from a search or from a conversation -->
+                            @if($backpath !== 0)
+                                <a href="{{$backpath}}"><button type="button" class="yootyButtGrey">BACK</button></a>
+                            @else
+                                <a onclick="javascript:history.back(); return false;" style="cursor: pointer;" class="d-inline-block"><button type="button" class="yootyButtGrey">BACK</button></a>
+                            @endif
 
-                            <div class="spacer35">&nbsp;</div>
-                            <div>
+                            <!-- check whether the profile was called from a search or from a conversation -->
+                            @if($backpath !== 0)
+                                <div class="spacer35">&nbsp;</div>
                                 <a href="{{ route('testimonial.create', ['id' => $user->id, 'path' => $backpath]) }}" id="Write the testimonial" class="f-reg d-inline black">Rédiger un avis</a>
                                 <div class="spacer20_right">&nbsp;</div>
                                 <a href="{{ route('testimonial.index', ['id' => $user->id, 'path' => $backpath]) }}" id="Read the testimonial" class="f-reg d-inline black">Témoignages</a>
-                            </div>
+                            @else
+                                <div class="spacer20_right">&nbsp;</div>
+
+                                <!-- put testimonials in popup window -->
+
+                                <button data-path="{{ route('testimonial.index-popup', ['id' => $user->id, 'path' => $backpath]) }}"
+                                        class="blank-button f-reg black load-ajax-modal"
+                                        role="button"
+                                        data-toggle="modal" data-target="#dynamic-modal">
+                                    Témoignages
+                                </button>
+
+                                <div class="modal fade" id="dynamic-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content" style="width:80vw; margin-left: 10vw; position: absolute!important; z-index: 8800;">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body"></div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script src="/js/modtesti.js"></script>
+                            @endif
+
 
                         </div>
                     </div>
@@ -112,18 +151,19 @@
         <p class="f-name_public_profile caps"><br />{{ $user->name }} {{$user->surname}}</p>
         {{--<p class="f-education_public_profile">{{ $user->education()->pluck('education')->implode(', ') }}</p>--}}
         <span class="f-rate_public_profile d-block">
-            {{ Str::of($user->testimonial->avg('rating'))->limit(3, '/') }}&nbsp;/&nbsp;5
+            @if($user->testimonial->count() > 0)
+                {{ Str::of($user->testimonial->avg('rating'))->limit(3, ' /') }}&nbsp;5
+            @endif
         </span>
         <a href="{{ route('profiles.reviews', ['id' => $user->id]) }}" class="f-education_public_profile d-block black">
             {{ $user->testimonial->count() }} avis
         </a>
-        <br />
-        <form action="{{ route('apply.coach') }}" method="post">
-            @csrf
-            <input type="hidden" name="user[]" id="{{$user->id}}" value="{{$user->id}}" class="css-checkbox" />
-            <input type="hidden" name="duration" value="week">
-            <button type="submit" class="yootyBTN_public_profile f-btn_public_profile">Professeur particulier</button>
-        </form>
+
+        <div id="pop" class="position-absolute" style="z-index: 1000; left: 50%; margin-left: -82px; width: 164px;">
+            <confirm-profp v-bind:id="{{$user->id}}" v-bind:name="'{{$user->name}}'" v-bind:surname="'{{Str::substr($user->surname, 0, 1)}}'"></confirm-profp>
+        </div>
+
+        <div class="spacer80">&nbsp;</div>
 
         <div class="f-reg d-inline-block" style="font-size: 22px;">Compétences:</div>
         @foreach($user->userprof as $skill)
@@ -140,17 +180,62 @@
             <div class="spacer20_right">&nbsp;</div>
             <div class="d-inline-block" style="width: calc(100% - 115px);">{{ DB::table('usermetas')->where('user_id','=',$user->id)->value('minibio') }}</div>
         </div>
-        <div class="spacer40">&nbsp;</div>
-        <button type="button" class="yootyButt">Choisir ce helper</button>
-        <div class="spacer10_left">&nbsp;</div>
-        <a href="{{$backpath}}"><button type="button" class="yootyButtGrey">BACK</button></a>
 
-        <div class="spacer35">&nbsp;</div>
-        <div>
-            <a href="{{ route('testimonial.create', ['id' => $user->id, 'path' => $backpath]) }}" id="Write the testimonial" class="f-reg d-inline black underline">Rédiger un avis</a>
+        <div class="spacer40">&nbsp;</div>
+
+        @if($assist === 'yes')
+            <div id="popassist" class="position-absolute" style="z-index: 7700; left: 50%; margin-left: -82px; width: 164px;">
+                <confirm-assist v-bind:id="{{$user->id}}" v-bind:message_id="{{$message_id}}" v-bind:name="'{{$user->name}}'" v-bind:surname="'{{Str::substr($user->surname, 0, 1)}}'" ></confirm-assist>
+            </div>
+            <div class="spacer10_left">&nbsp;</div>
+        @endif
+
+    <!-- check whether the profile was called from a search or from a conversation -->
+        @if($backpath !== 0)
+            <a href="{{$backpath}}"><button type="button" class="yootyButtGrey">BACK</button></a>
+        @else
+            <a onclick="javascript:history.back(); return false;" style="cursor: pointer;" class="d-inline-block"><button type="button" class="yootyButtGrey">BACK</button></a>
+        @endif
+
+    <!-- check whether the profile was called from a search or from a conversation -->
+        @if($backpath !== 0)
+            <div class="spacer35">&nbsp;</div>
+            <a href="{{ route('testimonial.create', ['id' => $user->id, 'path' => $backpath]) }}" id="Write the testimonial" class="f-reg d-inline black">Rédiger un avis</a>
             <div class="spacer20_right">&nbsp;</div>
-            <a href="{{ route('testimonial.index', ['id' => $user->id, 'path' => $backpath]) }}" id="Read the testimonial" class="f-reg d-inline black underline">Laisser un avis</a>
-        </div>
+            <a href="{{ route('testimonial.index', ['id' => $user->id, 'path' => $backpath]) }}" id="Read the testimonial" class="f-reg d-inline black">Témoignages</a>
+        @else
+            <div class="spacer20_right">&nbsp;</div>
+
+            <!-- put testimonials in popup window -->
+
+            <button data-path="{{ route('testimonial.index-popup', ['id' => $user->id, 'path' => $backpath]) }}"
+                    class="blank-button f-reg black load-ajax-modal"
+                    role="button"
+                    data-toggle="modal" data-target="#dynamic-modal">
+                Témoignages
+            </button>
+
+            <div class="modal fade" id="dynamic-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width:80vw; margin-left: 10vw; position: absolute!important; z-index: 8800;">
+                        <div class="modal-header">
+                            <h5 class="modal-title"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body"></div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="/js/modtesti.js"></script>
+        @endif
 
         <div class="spacer80">&nbsp;</div>
 

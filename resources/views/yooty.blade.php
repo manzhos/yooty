@@ -29,6 +29,9 @@
         <link href="{{ asset('/css/filterradio.css') }}" rel="stylesheet" />
         <link href="{{ asset('/css/payments.css') }}" rel="stylesheet" />
 
+        <!-- PAINTING -->
+        <link href="{{ asset('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css') }}" rel="stylesheet" />
+
         <!-- NOTIFICATIONS -->
         <link href="{{ asset('/css/notification.css') }}" rel="stylesheet" />
 
@@ -50,6 +53,12 @@
 
         <!-- Stripe -->
         <script src="https://js.stripe.com/v3/"></script>
+
+
+        <!-- Scrips for Bootstrap -->
+        <script src="{{ asset('/lib/jquery-3.5.1.slim.min.js') }}"></script>
+        <script src="{{ asset('/lib/popper.min.js') }}"></script>
+        <script src="{{ asset('/lib/bootstrap.min.js') }}"></script>
 
         @yield('head')
 
@@ -130,10 +139,6 @@
         <!-- Scrips for Menu -->
         <script src="{{ asset('/js/menu.js') }}"></script>
 
-        <!-- Scrips for Bootstrap -->
-        <script src="{{ asset('/lib/jquery-3.5.1.slim.min.js') }}"></script>
-        <script src="{{ asset('/lib/popper.min.js') }}"></script>
-        <script src="{{ asset('/lib/bootstrap.min.js') }}"></script>
 {{--
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -143,6 +148,7 @@
 
         <!-- Scripts -->
         <script src="{{ asset('/js/app.js') }}"></script>
+        <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js') }}"></script>
 
 
     </body>

@@ -17,14 +17,13 @@
 
                 <h1 class="f-boldSE caps"> Témoignages sur {{ $user->name }}&nbsp;{{ Str::substr($user->surname, 0, 1) }}</h1>
                 <div class="spacer20">&nbsp;</div>
+                <p class="text-center f-name_public_profile">Score moyen&nbsp;: {{ Str::of($user->testimonial->avg('rating'))->limit(3, ' /') }}&nbsp;5</p>
+                <div class="spacer20">&nbsp;</div>
                 <hr>
-                <div class="spacer35">&nbsp;</div>
 
                 @forelse($user->testimonial as $testimonial)
                     <div class="row">
                         <div class="col">
-                            <p class="text-center f-name_public_profile">Score moyen&nbsp;: {{ Str::of($user->testimonial->avg('rating'))->limit(3, '/') }}&nbsp;/&nbsp;5</p>
-                            <hr>
                             <div class="spacer10">&nbsp;</div>
                             <p>{{ $testimonial->testimonial }}</p>
                             <div class="text-center">
@@ -97,7 +96,7 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <p class="text-center f-name_public_profile">Score moyen&nbsp;: {{ Str::of($user->testimonial->avg('rating'))->limit(3, '/') }}&nbsp;/&nbsp;5</p>
+                    <p class="text-center f-name_public_profile">Score moyen&nbsp;: {{ Str::of($user->testimonial->avg('rating'))->limit(3, '/') }}&nbsp;5</p>
                     <hr>
                     <div class="spacer10">&nbsp;</div>
                     <p>{{ $testimonial->testimonial }}</p>

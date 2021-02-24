@@ -44,6 +44,9 @@ Vue.component('add-skill', require('./components/AddSkill.vue').default);
 //Conversation dialogs
 Vue.component('signaler-reason', require('./components/SignalerReason').default);
 
+//Paint
+Vue.component('draw', require('./components/Paint.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -69,4 +72,8 @@ const popassist = new Vue({
 
 const chat = new Vue({
     el: '#chat',
+});
+
+var draw = new Vue({
+    el: '#draw',
 });

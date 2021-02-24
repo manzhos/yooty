@@ -94,25 +94,27 @@
                     @endif
                 </div>
                 <div class="d-inline-block">
-                    @switch($icon_message)
-                        @case('coach')
-                        <a id="already_tutor_link" href="#" class="tutor-popup-open d-inline-block">
-                            <img src="/images/ac_hat.svg" width="30" height="30" class="d-inline-block conv-head-icons-mob" />
+                    @if(!$message->meta->terminate)
+                        @switch($icon_message)
+                            @case('coach')
+                            <a id="already_tutor_link" href="#" class="tutor-popup-open d-inline-block">
+                                <img src="/images/ac_hat.svg" width="30" height="30" class="d-inline-block conv-head-icons-mob" />
+                            </a>
+                            @break
+                            @case('student')
+                            <a id="be_my_tutor_link" href="#" class="tutor-popup-open d-inline-block">
+                                <img src="/images/books.svg" width="30" height="30" class="d-inline-block conv-head-icons-mob" />
+                            </a>
+                            @break
+                            @default
+                            <a id="be_my_tutor_link" href="#" class="tutor-popup-open d-inline-block">
+                                <img src="/images/books.svg" width="30" height="30" class="d-inline-block conv-head-icons-mob" />
+                            </a>
+                        @endswitch
+                        <a id="alert" href="#" class="alert-popup-open d-inline-block">
+                            <img src="/images/alert.svg" width="26" height="26" class="d-inline-block conv-head-icons-mob" />
                         </a>
-                        @break
-                        @case('student')
-                        <a id="be_my_tutor_link" href="#" class="tutor-popup-open d-inline-block">
-                            <img src="/images/books.svg" width="30" height="30" class="d-inline-block conv-head-icons-mob" />
-                        </a>
-                        @break
-                        @default
-                        <a id="be_my_tutor_link" href="#" class="tutor-popup-open d-inline-block">
-                            <img src="/images/books.svg" width="30" height="30" class="d-inline-block conv-head-icons-mob" />
-                        </a>
-                    @endswitch
-                    <a id="alert" href="#" class="alert-popup-open d-inline-block">
-                        <img src="/images/alert.svg" width="26" height="26" class="d-inline-block conv-head-icons-mob" />
-                    </a>
+                    @endif
                 </div>
             </div>
         </div>

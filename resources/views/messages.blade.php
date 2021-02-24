@@ -94,23 +94,23 @@
                                 </div>
                             </div>
                             <div id="icons" class="position-absolute conv-head-icons">
-                                @switch($icon_message)
-                                    @case('coach')
-                                        <a id="already_tutor_link" href="#" class="d-inline-block" data-tooltip="Votre professeur particulier.">
-                                            <img src="/images/ac_hat.svg" width="30" height="30" style="margin-left: 5px" />
-                                        </a>
-                                    @break
-                                    @case('student')
-                                        <a id="be_my_tutor_link" href="#" class="tutor-popup-open d-inline-block" data-tooltip="Offre de devenir professeur particulier." >
-                                            <img src="/images/books.svg" width="30" height="30" style="margin-left: 5px" />
-                                        </a>
-                                    @break
-                                    @default
-                                        <a id="be_my_tutor_link" href="#" class="tutor-popup-open d-inline-block" data-tooltip="Offre de devenir professeur particulier." >
-                                            <img src="/images/books.svg" width="30" height="30" style="margin-left: 5px"/>
-                                        </a>
-                                @endswitch
                                 @if(!$message->meta->terminate)
+                                    @switch($icon_message)
+                                        @case('coach')
+                                            <a id="already_tutor_link" href="#" class="d-inline-block" data-tooltip="Votre professeur particulier.">
+                                                <img src="/images/ac_hat.svg" width="30" height="30" style="margin-left: 5px" />
+                                            </a>
+                                        @break
+                                        @case('student')
+                                            <a id="be_my_tutor_link" href="#" class="tutor-popup-open d-inline-block" data-tooltip="Offre de devenir professeur particulier." >
+                                                <img src="/images/books.svg" width="30" height="30" style="margin-left: 5px" />
+                                            </a>
+                                        @break
+                                        @default
+                                            <a id="be_my_tutor_link" href="#" class="tutor-popup-open d-inline-block" data-tooltip="Offre de devenir professeur particulier." >
+                                                <img src="/images/books.svg" width="30" height="30" style="margin-left: 5px"/>
+                                            </a>
+                                    @endswitch
                                     <a id="alert" href="#" class="alert-popup-open d-inline-block" data-tooltip="Terminer le chat ou signalez la violation." >
                                         <img src="/images/alert.svg" width="26" height="26" class="d-inline-block" style="margin-left: 20px"/>
                                     </a>
@@ -123,7 +123,7 @@
                         <div class="container conv-subhead">
                             <div class="row" style="padding: 11px 15px;">
                                 <div id="assistant" class="col-7">
-                                    @if($message->user_id != Illuminate\Support\Facades\Auth::user()->id)
+                                    @if($message->user_id != Illuminate\Support\Facades\Auth::user()->id && !$message->meta->terminate)
                                         <div class="f-name_list_profile caps d-block">Professeur particulier</div>
                                         <div class="d-block">
                                             <a onclick="location.href='/profile/publicprofile/{{ $message->user->id }}?assistance=no&path='+window.location.href" style="cursor: pointer;">

@@ -104,7 +104,7 @@ class UserController extends Controller
         if($request->has('message_id')) {
             $message_id = $request->message_id;
         }
-stu
+
         if($request->has('path')){
             $backpath = $request->path;
         }
