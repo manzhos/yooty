@@ -100,12 +100,13 @@
         @endauth
 
 
+{{--
         @include('layouts.nav')
-
+--}}
 
         @yield('content')
 
-
+{{--
         <!-- Block for VUE scripts -->
         <div id="app">
         @guest
@@ -115,7 +116,7 @@
             <popup-notification v-bind:id="{{Illuminate\Support\Facades\Auth::user()->id}}"></popup-notification>
             <i-coach-notification v-bind:id="{{Illuminate\Support\Facades\Auth::user()->id}}"></i-coach-notification>
         @endguest
-    </div>
+        </div>
 
 
                 <div class="hidden" id="drop"></div>
@@ -125,6 +126,7 @@
 
 
         @include('layouts.footer')
+--}}
 
 
 

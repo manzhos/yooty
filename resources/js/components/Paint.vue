@@ -1,10 +1,64 @@
 <template>
-    <div class="container reg-container">
+    <div>
+        <div class="position-absolute yootyButt yooty-main-BTN" style="top:10px; left:10px;z-index: 889;">
+            <a onclick="javascript:history.back(); return false;" style="cursor: pointer;" class="black">
+                <i class="fas fa-angle-left" style="margin-left: 10px;"></i>
+            </a>
+        </div>
 
-        <div class="app-wrapper" style="position: absolute; top: 5vh; left: 5vw; z-index: 99999; background-color: white; width: 90vw; height: 90vh;">
+        <div class="app-wrapper" style="position: absolute; z-index: 888; background-color: white;">
             <canvas id="canvas"></canvas>
-            <!--<div class="cursor" id="cursor"></div>-->
+            <div class="cursor" id="cursor"></div>
+
+            <div class="popup" v-if="popups.showSave">
+                <div class="popup-title">
+                    Save your design
+                </div>
+                <div class="form">
+                    <input type="text"
+                           placeholder="Save name"
+                           v-model="save.name">
+                    <div v-if="save.name.length < 3" class="text-faded">
+                        <i>
+                            Min 3 characters
+                        </i>
+                    </div>
+                    <span class="btn"
+                          v-on:click="saveItem">
+                            Save as
+                            <span class="text-faded">
+                                {{ save.name }}
+                            </span>
+                        </span>
+                </div>
+
+                <div class="saves" v-if="save.saveItems.length">
+                    <div class="popup-title">
+                        Load a save
+                    </div>
+
+                    <div class="save-item"
+                         v-for="item in save.saveItems">
+                        <h3>{{ item.name }}</h3>
+                        <span class="btn"
+                              v-on:click="loadSave(item)">load</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="controls">
+
+                <div class="btn-row">
+                    <button title="Load"
+                            v-on:click="popups.showLoad = !popups.showLoad">
+                        <i class="far fa-save" style="margin-left: 10px;"></i>
+                    </button>
+                    <button title="Save"
+                            v-on:click="popups.showSave = !popups.showSave">
+                        <i class="fas fa-file-download" style="margin-left: 10px;"></i>
+                    </button>
+                </div>
+                <div class="spacer20_right"></div><div class="spacer20_right"></div>
 <!--
                 <div class="btn-row">
                     <div class="history" title="history">
@@ -16,15 +70,16 @@
                     <button type="button"
                             class="yootyButt d-inline-block "
                             v-on:click="removeHistoryItem"
-                            v-bind:class="{ disabled: !history.length }" title="Undo">
-                        <i class="fas fa-undo-alt"></i>
+                            v-bind:class="{ disabled: !history.length }"
+                            title="Undo">
+                        <i class="fas fa-undo-alt" style="margin-left: 10px;"></i>
                     </button>
                     <button type="button"
                             class="yootyButt d-inline-block"
                             v-on:click="removeAllHistory"
                             v-bind:class="{ disabled: !history.length }"
                             title="Clear all">
-                        <i class="far fa-trash-alt"></i>
+                        <i class="far fa-trash-alt" style="margin-left: 10px;"></i>
                     </button>
                 </div>
 <!--
@@ -221,14 +276,14 @@
         },
 
         mounted() {
-            console.log('mounted');
+            //console.log('mounted');
             this.startDraw();
         },
 
         methods: {
 
             startDraw(){
-                console.log('startDraw');
+                //console.log('startDraw');
                 this.c = document.getElementById('canvas');
                 this.ctx = this.c.getContext('2d');
 
@@ -246,13 +301,13 @@
             },
 
             setSize(){
-                console.log('setSize');
+                //console.log('setSize');
                 this.c.width = window.innerWidth;
                 this.c.height = window.innerHeight - 60;
             },
 
             listen(){
-                console.log('listen');
+                //console.log('listen');
                 this.c.addEventListener('mousedown', (e)=>{
                     this.mouseDown = true;
                     this.mouseX = e.offsetX;
@@ -298,7 +353,7 @@
                         };
 
                         this.history.push(item);
-                        console.log('mousemove->app.history.length', this.history.length, this.history.length[this.history.length-1]);
+                        //console.log('mousemove->app.history.length', this.history.length, this.history.length[this.history.length-1]);
                         this.draw(item, this.history.length);
                     }
                 });
@@ -312,15 +367,15 @@
             moveMouse(e){
                 let x = e.offsetX;
                 let y = e.offsetY;
-                console.log('moveMouse:', x, y, this.history.length);
+                //console.log('moveMouse:', x, y, this.history.length);
 
-                //var cursor = document.getElementById('cursor');
+                var cursor = document.getElementById('cursor');
 
-                //cursor.style.transform = `translate(${x - 16}px, ${y - 16}px)`;
+                cursor.style.transform = `translate(${x - 10}px, ${y - 10}px)`;
             },
 
             getDummyItem(){
-                console.log("app.history.length->getDummyItem::", this.history.length);
+                //console.log("app.history.length->getDummyItem::", this.history.length);
                 var lastPoint = this.history[this.history.length-1];
 
                 return {
@@ -334,7 +389,7 @@
 
             setDummyPoint(){
                 var item = this.getDummyItem();
-                console.log(item, 'app.history.length:', this.history.length, '   APP.H ::: ', this.history[this.history.length-1])
+                //console.log(item, 'app.history.length:', this.history.length, '   APP.H ::: ', this.history[this.history.length-1])
                 this.history.push(item);
                 this.draw(item, this.history.length);
             },
@@ -372,22 +427,23 @@
 
 
             redraw(){
-                console.log('redraw');
+                //console.log('redraw');
                 this.ctx.clearRect(0, 0, this.c.width, this.c.height);
                 this.drawBgDots();
 
                 if(!this.history.length){
-                    console.log("app.history.length-first::", this.history.length);
+                    //console.log("app.history.length-first::", this.history.length);
                     return true;
                 }
 
                 this.history.forEach((item, i)=>{
+                    //console.log(item, i);
                     this.draw(item, i);
                 });
             },
 
             drawBgDots(){
-                console.log('drawBgDots');
+                //console.log('drawBgDots');
 
                 var gridSize = 50;
                 this.ctx.fillStyle = 'rgba(0, 0, 0, .2)';
@@ -406,10 +462,9 @@
 
 
 
-
-
-            removeHistoryItem(){
-                this.history.splice(app.history.length-2, 1);
+            removeHistoryItem() {
+                //console.log('removeItem');
+                this.history.splice(this.history.length-2, 1);
                 this.redraw();
             },
             removeAllHistory(){
@@ -477,17 +532,6 @@
 
 <style scoped>
 
-/*
-    $prim: rgb(0, 149, 255);
-*/
-
-/*
-    body {
-        background-color: black;
-        color: white;
-    }
-*/
-
     .app-wrapper {
         z-index: 9999;
     }
@@ -507,29 +551,14 @@
         transition: opacity 1s;
     }
 
-canvas {
-    width: 100%;
-    height: calc(100vh - 60px);
-    background-color: white;
-    /*cursor: none;*/
-}
-/*
     canvas {
+        position: relative;
         width: 100%;
         height: calc(100vh - 60px);
         background-color: white;
         cursor: none;
-
-        &:hover + .cursor {
-             opacity: 1;
-         }
-
-        &:active + .cursor {
-             border-color: rgb(60, 60, 60);
-         }
     }
-*/
-/*
+
     .controls {
         position: fixed;
         z-index: 5;
@@ -549,16 +578,6 @@ canvas {
         margin-bottom: 15px;
     }
 
-    .btn-row {
-        position: relative;
-        margin-bottom: 5px;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        padding: 0 15px;
-        border-radius: 4px;
-    }
-
     .popup {
         position: absolute;
         width: 300px;
@@ -573,12 +592,13 @@ canvas {
         border-radius: 10px 10px 0 0;
         border: 1px solid rgb(220, 220, 220);
         border-bottom-width: 0;
-        opacity: 0;
+        opacity: 100%;
         animation: popup .5s forwards cubic-bezier(.2, 2, .4, 1);
         z-index: 2;
         overflow: hidden;
         max-height: 80vh;
         overflow-y: auto;
+    }
 
     .popup-title {
         flex: 0 0 100%;
@@ -589,316 +609,328 @@ canvas {
         margin-bottom: 10px;
     }
 
-    button {
-        height: 80px;
-        width: 80px;
-        text-align: center;
-        font-size: 14px;
-        color: rgba(0, 0, 0, .4);
+    /*
+        .btn-row {
+            position: relative;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0 15px;
+            border-radius: 4px;
+        }
 
-    i {
-        display: block;
-        font-size: 30px;
-        margin-bottom: 5px;
-        color: rgba(0, 0, 0, .2);
-    }
 
-    &.disabled {
-         color: rgba(0, 0, 0, .2);
+        button {
+            height: 80px;
+            width: 80px;
+            text-align: center;
+            font-size: 14px;
+            color: rgba(0, 0, 0, .4);
 
-    i {
-        color: rgba(0, 0, 0, .1);
-    }
-    }
+        i {
+            display: block;
+            font-size: 30px;
+            margin-bottom: 5px;
+            color: rgba(0, 0, 0, .2);
+        }
 
-    &.active,
-    &:active {
-         color: rgba(0, 0, 0, .4);
+        &.disabled {
+             color: rgba(0, 0, 0, .2);
 
-    i {
-        color: $prim;
-    }
-    }
-    }
-    }
+        i {
+            color: rgba(0, 0, 0, .1);
+        }
+        }
 
-    @keyframes popup {
-        from {
+        &.active,
+        &:active {
+             color: rgba(0, 0, 0, .4);
+
+        i {
+            color: $prim;
+        }
+        }
+        }
+        }
+
+        @keyframes popup {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .welcome-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9;
+            background-color: $prim;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fade-up {
             opacity: 0;
-            transform: translateX(40px);
+            animation: fade-up 1s forwards cubic-bezier(.2, 2, .4, 1);
         }
-        to {
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-weight: 400;
+            font-size: 16px;
+            border-radius: 4px;
+            background-color: $prim;
+            color: white;
+            animation-delay: 1s;
+            transition: all .15s;
+            cursor: pointer;
+
+        &:hover {
+             background-color: lighten($prim, 10%);
+         }
+        }
+
+        .welcome {
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+        h1.fade-up {
+            font-weight: 300;
+            font-size: 40px;
+            animation-delay: .25s;
+        }
+
+        h2.fade-up {
+            font-weight: 400;
+            color: rgba(255, 255, 255, .5);
+            animation-delay: .5s;
+        }
+
+        a.fade-up {
+            color: rgba(255, 255, 255, .5);
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            animation-delay: .75s;
+        }
+
+        .btn.fade-up {
+            background-color: rgba(255, 255, 255, .2);
+            color: white;
+            margin-top: 60px;
+
+        &:hover {
+             background-color: rgba(255, 255, 255, .3);
+         }
+        }
+        }
+
+
+        @keyframes fade-up {
+            from {
+                transform: translateY(80px);
+                opacity: 0;
+            }
+            to {
+                transform: none;
+                opacity: 1;
+            }
+        }
+
+        .form {
+            flex: 0 0 100%;
+
+        input {
+            display: block;
+            appearance: none;
+            border: 0;
+            box-shadow: 0;
+            outline: 0;
+            background-color: rgb(240, 240, 240);
+            border-radius: 4px;
+            padding: 10px 15px;
+            width: 100%;
+            margin-bottom: 4px;
+        }
+        }
+
+        button {
+            appearance: none;
+            border: 0;
+            border-radius: 0;
+            box-shadow: 0;
+            width: 40px;
+            height: 60px;
+            display: inline-block;
+            background-color: transparent;
+            color: rgb(140, 140, 140);
+            font-size: 22px;
+            transition: all .15s;
+            cursor: pointer;
+            outline: 0;
+            position: relative;
+
+        .size-icon,
+        .color-icon {
+            position: absolute;
+            top: 10px;
+            right: 0;
+        }
+
+        .color-icon {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+        }
+
+        .size-icon {
+            font-size: 6px;
+            text-align: right;
+        }
+
+        &:hover {
+             opacity: .8;
+         }
+
+        &:active,
+        &.active{
+             color: white;
+         }
+
+        &.disabled {
+             color: rgb(50, 50, 50);
+             cursor: not-allowed;
+         }
+        }
+
+        .history {
+            width: 30px;
+            height: 30px;
+            background-color: rgb(30, 30, 30);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-size: 12px;
+            overflow: hidden;
+            color: rgb(140, 140, 140);
+        }
+
+        .color-item {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        input {
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+        }
+
+        input:checked + .color {
             opacity: 1;
-            transform: none;
+            border: 2px solid $prim;
         }
-    }
 
-    .welcome-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 9;
-        background-color: $prim;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        .color {
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border-radius: 50%;
 
-    .fade-up {
-        opacity: 0;
-        animation: fade-up 1s forwards cubic-bezier(.2, 2, .4, 1);
-    }
+        &:hover {
+             opacity: .8;
+         }
+        }
+        }
 
-    .btn {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 10px 20px;
-        font-weight: 400;
-        font-size: 16px;
-        border-radius: 4px;
-        background-color: $prim;
-        color: white;
-        animation-delay: 1s;
-        transition: all .15s;
-        cursor: pointer;
+        @keyframes pulsate {
+            0%,
+            100% {
+                transform: none;
+            }
+            50% {
+                transform: scale(1.15);
+            }
+        }
 
-    &:hover {
-         background-color: lighten($prim, 10%);
-     }
-    }
+        .size-item {
+            width: 40px;
+            height: 60px;
+            display: inline-flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            vertical-align: top;
+            cursor: pointer;
 
-    .welcome {
-        width: 400px;
-        height: 400px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-    h1.fade-up {
-        font-weight: 300;
-        font-size: 40px;
-        animation-delay: .25s;
-    }
-
-    h2.fade-up {
-        font-weight: 400;
-        color: rgba(255, 255, 255, .5);
-        animation-delay: .5s;
-    }
-
-    a.fade-up {
-        color: rgba(255, 255, 255, .5);
-        display: inline-block;
-        margin-top: 20px;
-        text-decoration: none;
-        animation-delay: .75s;
-    }
-
-    .btn.fade-up {
-        background-color: rgba(255, 255, 255, .2);
-        color: white;
-        margin-top: 60px;
-
-    &:hover {
-         background-color: rgba(255, 255, 255, .3);
-     }
-    }
-    }
-
-
-    @keyframes fade-up {
-        from {
-            transform: translateY(80px);
+        input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
             opacity: 0;
         }
-        to {
-            transform: none;
-            opacity: 1;
+
+        .size {
+            background-color: rgb(140, 140, 140);
+            display: inline-block;
+            border-radius: 50%;
+            transition: all .15s;
+            transform: translate(-50%, -50%) scale(.6);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+        &:hover {
+             opacity: .8;
+         }
         }
-    }
 
-    .form {
-        flex: 0 0 100%;
-
-    input {
-        display: block;
-        appearance: none;
-        border: 0;
-        box-shadow: 0;
-        outline: 0;
-        background-color: rgb(240, 240, 240);
-        border-radius: 4px;
-        padding: 10px 15px;
-        width: 100%;
-        margin-bottom: 4px;
-    }
-    }
-
-    button {
-        appearance: none;
-        border: 0;
-        border-radius: 0;
-        box-shadow: 0;
-        width: 40px;
-        height: 60px;
-        display: inline-block;
-        background-color: transparent;
-        color: rgb(140, 140, 140);
-        font-size: 22px;
-        transition: all .15s;
-        cursor: pointer;
-        outline: 0;
-        position: relative;
-
-    .size-icon,
-    .color-icon {
-        position: absolute;
-        top: 10px;
-        right: 0;
-    }
-
-    .color-icon {
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-    }
-
-    .size-icon {
-        font-size: 6px;
-        text-align: right;
-    }
-
-    &:hover {
-         opacity: .8;
-     }
-
-    &:active,
-    &.active{
-         color: white;
-     }
-
-    &.disabled {
-         color: rgb(50, 50, 50);
-         cursor: not-allowed;
-     }
-    }
-
-    .history {
-        width: 30px;
-        height: 30px;
-        background-color: rgb(30, 30, 30);
-        border-radius: 50%;
-        text-align: center;
-        line-height: 30px;
-        font-size: 12px;
-        overflow: hidden;
-        color: rgb(140, 140, 140);
-    }
-
-    .color-item {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-        width: 60px;
-        height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-    input {
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 0;
-    }
-
-    input:checked + .color {
-        opacity: 1;
-        border: 2px solid $prim;
-    }
-
-    .color {
-        display: block;
-        width: 30px;
-        height: 30px;
-        background-color: white;
-        border-radius: 50%;
-
-    &:hover {
-         opacity: .8;
-     }
-    }
-    }
-
-    @keyframes pulsate {
-        0%,
-        100% {
-            transform: none;
+        input:checked + .size {
+            background-color: $prim;
         }
-        50% {
-            transform: scale(1.15);
         }
-    }
 
-    .size-item {
-        width: 40px;
-        height: 60px;
-        display: inline-flex;
-        position: relative;
-        justify-content: center;
-        align-items: center;
-        vertical-align: top;
-        cursor: pointer;
+        .saves {
+            flex: 0 0 calc(100% + 60px);
+            margin: 30px -30px -30px;
+            padding: 30px;
+            background-color: rgb(240, 240, 240);
+            max-height: 250px;
+            overflow-y: auto;
 
-    input {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 0;
-        opacity: 0;
-    }
-
-    .size {
-        background-color: rgb(140, 140, 140);
-        display: inline-block;
-        border-radius: 50%;
-        transition: all .15s;
-        transform: translate(-50%, -50%) scale(.6);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-
-    &:hover {
-         opacity: .8;
-     }
-    }
-
-    input:checked + .size {
-        background-color: $prim;
-    }
-    }
-
-    .saves {
-        flex: 0 0 calc(100% + 60px);
-        margin: 30px -30px -30px;
-        padding: 30px;
-        background-color: rgb(240, 240, 240);
-        max-height: 250px;
-        overflow-y: auto;
-
-    .save-item {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    }
-*/
+        .save-item {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        }
+    */
 
 </style>
