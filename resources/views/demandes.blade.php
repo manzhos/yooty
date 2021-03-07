@@ -48,9 +48,21 @@
         <!-- menu button in menu-line -->
         <div class="mobMenu-blank">
             <div class="position-relative">
-                <a href="{{ url('profile') }}" class="black"><div id="menuleft"><i class="fas fa-user-circle"></i></div></a>
-                <div id="menucenter"><img src="{{ asset('/images/YootyBlack.svg') }}" class="menuLogo-mob" alt="YOOTY"></div>
-                <a href="{{ route('search-messages') }}" class="black"><div id="menuright"><i class="far fa-comment-dots iconbottmenu"></i></div></a>
+                <a href="{{ url('profile') }}" class="black">
+                    <div class="menuleft">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                </a>
+                <a href="{{ url('/') }}" class="black">
+                    <div id="menucenter">
+                        <img src="{{ asset('/images/YootyBlack.svg') }}" class="menuLogo-mob" alt="YOOTY">
+                    </div>
+                </a>
+                <a href="{{ route('search-messages') }}" class="black">
+                    <div id="menuright">
+                        <i class="far fa-comment-dots iconbottmenu"></i>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="spacer20">&nbsp;</div>

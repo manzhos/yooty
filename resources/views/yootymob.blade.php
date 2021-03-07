@@ -101,10 +101,10 @@
             <!-- user is undefined -->
         @else
             <!-- user is defined -->
-                <popup-notification v-bind:id="{{Illuminate\Support\Facades\Auth::user()->id}}"></popup-notification>
-                <i-coach-notification v-bind:id="{{Illuminate\Support\Facades\Auth::user()->id}}"></i-coach-notification>
-            @endguest
-        </div>
+            <popup-notification v-bind:id="{{Illuminate\Support\Facades\Auth::user()->id}}"></popup-notification>
+            <i-coach-notification v-bind:id="{{Illuminate\Support\Facades\Auth::user()->id}}"></i-coach-notification>
+        @endguest
+    </div>
 
 
 
