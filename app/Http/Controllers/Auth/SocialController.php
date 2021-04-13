@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class SocialController extends Controller
@@ -45,19 +45,19 @@ class SocialController extends Controller
                 $last_name =  $socialUser['family_name'];
                 break;
 
-/*
+
             case 'snapchat':
                 $socialUser = Socialite::driver('snapchat')->user();
                 $first_name = $socialUser['display_name'];
                 $last_name =  $socialUser['display_name'];
                 break;
-*/
+
 
             // Also add more provider option e.g. linkedin, twitter etc.
 
             default:
                 $first_name = $socialUser->getName();
-                $last_name = $socialUser->getName();
+                $last_name =  $socialUser->getName();
         }
 
         $user = User::where('email', $socialUser->getEmail())->first();

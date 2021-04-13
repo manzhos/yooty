@@ -249,7 +249,7 @@ class MessageController extends Controller
                 $checked_time_expiring = 'unchecked';
             }
 
-            //filter time expiring
+            //filter no offer
             if($request->no_offers)
             {
                 $offer_ids = DB::table('message_user')->pluck('message_id');
@@ -282,7 +282,17 @@ class MessageController extends Controller
             $paid_ids = DB::table('payments')->where('payment_status','=', 'succeeded')->pluck('message_id');
 
             // select the messages
-            $messages = Message::join('message_meta','messages.id','=','message_meta.message_id')->whereIn('messages.id',$paid_ids)->whereIn('messages.id', $science_ids)->whereIn('messages.id',$education_ids)->whereIn('messages.id',$dt_exps)->whereNotIn('messages.id', $offer_ids)->where('message_meta.cost','!=',null)->orderby('message_meta.cost', 'desc')->orderby('messages.created_at', 'desc')->paginate(50);
+            $messages =
+                Message::join('message_meta','messages.id','=','message_meta.message_id')
+                ->whereIn('messages.id',$paid_ids)
+                ->whereIn('messages.id', $science_ids)
+                ->whereIn('messages.id',$education_ids)
+                ->whereIn('messages.id',$dt_exps)
+                ->whereNotIn('messages.id', $offer_ids)
+                ->where('message_meta.cost','!=',null)
+                ->orderby('message_meta.cost', 'desc')
+                ->orderby('messages.created_at', 'desc')
+                ->paginate(50);
 
             $users = User::all();
             $educations = Education::all();
@@ -301,9 +311,13 @@ class MessageController extends Controller
             //selecting paid messages
             $paid_ids = DB::table('payments')->where('payment_status','=', 'succeeded')->pluck('message_id');
 
-            //$messages = Message::whereIn('id',$paid_ids)->orderBy('id')->get();
-            $messages = Message::join('message_meta','messages.id','=','message_meta.message_id')->whereIn('messages.id',$paid_ids)->where('message_meta.cost','!=',null)->orderby('message_meta.cost', 'desc')->orderby('messages.created_at', 'desc')->paginate(50);
-            //dd($messages);
+            $messages =
+                Message::join('message_meta','messages.id','=','message_meta.message_id')
+                ->whereIn('messages.id',$paid_ids)
+                ->where('message_meta.cost','!=',null)
+                ->orderby('message_meta.cost', 'desc')
+                ->orderby('messages.created_at', 'desc')
+                ->paginate(50);
 
         }
 

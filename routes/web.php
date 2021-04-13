@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PaintController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
@@ -52,6 +53,10 @@ Route::get('/', [PagesController::class, 'index']);
 //// Authentication routes
 Auth::routes();
 
+// Social login routes // facebook, twitter, linkedin, google
+Route::get('/social-auth/{provider}', [SocialController::class, 'redirectToProvider'])->name('auth.social');
+Route::get('/social-auth/{provider}/callback', [SocialController::class, 'handleProviderCallback'])->name('auth.social.callback');
+
 
 //// Messages routes
 Route::get('/messages', [MessageController::class, 'index'])->name('messages');
@@ -75,10 +80,6 @@ Route::get('/message/successful',[PagesController::class,'successful'])->name('m
 // Message delete
 Route::get('/message/delete',[MessageController::class,'destroy'])->name('message.delete');
 
-
-//// Social login routes // facebook, twitter, linkedin, google
-Route::get('/social-auth/{provider}', [SocialController::class, 'redirectToProvider'])->name('auth.social');
-Route::get('/social-auth/{provider}/callback', [SocialController::class, 'handleProviderCallback'])->name('auth.social.callback');
 
 
 ////User Profile
@@ -233,3 +234,8 @@ Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['a
     Route::get('/adminconversations', [DashboardController::class, 'adminconversations'])->name('admin.conversations');
 
 } );
+
+
+//// Test route
+
+Route::get('/test',[TestController::class, 'test'])->name('test');

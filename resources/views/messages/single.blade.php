@@ -136,6 +136,7 @@
                     @if(isset($ids[0]))
                         <button class="yootyButtGrey inactive">Déjà appliqué</button>
                     @else
+                        {{-- $message->id --}}
                         <form action="{{ route('assistance.apply',['id' => $message->id]) }}" method="post" role="form" id="Offer assistance">
                             @csrf
                             <button type="submit" class="yootyButt">Proposez mon aide</button>

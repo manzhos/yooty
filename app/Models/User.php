@@ -94,7 +94,7 @@ class User extends Authenticatable
 
     public function assistance_user()
     {
-        return $this->belongsToMany(Message::class,'message_user','user_id','message_id');
+        return $this->belongsToMany(Message::class);
     }
 
     public function coach()

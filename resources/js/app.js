@@ -19,7 +19,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 //NOTIFICATONS
 Vue.component('popup-notification', require('./components/PopUpNotification.vue').default);
@@ -27,25 +27,29 @@ Vue.component('i-coach-notification', require('./components/IamYourCoachNotifica
 
 Vue.component('confirm-profp', require('./components/ConfirmProfP.vue').default);
 Vue.component('confirm-assist', require('./components/ConfirmAssist.vue').default);
-//Vue.component('confirm-userprof', require('./components/ConfirmUserProf.vue').default);
+// Vue.component('confirm-userprof', require('./components/ConfirmUserProf.vue').default);
 
-//CHAT
+// CHAT
 Vue.component('chat', require('./components/Chat.vue').default);
 Vue.component('mobilechat', require('./components/MobileChat.vue').default);
 
-//MENU
+// MENU
 Vue.component('drop-down-select', require('./components/DropDownSelect.vue').default);
 Vue.component('drop-down-create', require('./components/DropDownCreate.vue').default);
 Vue.component('drop-down-edit', require('./components/DropDownEdit.vue').default);
 
-//PROFILE
+// PROFILE
 Vue.component('add-skill', require('./components/AddSkill.vue').default);
 
-//Conversation dialogs
+// Conversation dialogs
 Vue.component('signaler-reason', require('./components/SignalerReason').default);
 
-//Paint
+// Paint
 Vue.component('draw', require('./components/Paint.vue').default);
+
+
+// Test
+Vue.component('test', require('./components/Test.vue').default);
 
 
 /**

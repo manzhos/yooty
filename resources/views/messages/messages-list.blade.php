@@ -143,10 +143,7 @@
                             @endif
                         @else
                             <!--  You are NOT the AUTHOR of the ad's message  -->
-                            @php
-                                /*$ids = $message->assistance()->where('user_id','=', \Illuminate\Support\Facades\Auth::user()->id)->count();*/
-                                /*$ass = $message->assistance()->where('assistant','=', 1)->count();*/
-                            @endphp
+                            {{-- DB::table('message_user')->where('message_id',$message->message_id)->where('user_id','=', \Illuminate\Support\Facades\Auth::user()->id)->count() --}}
                             @if($ass > 0)
                                 <!--  Offer applied  -->
                                 @if($message->assistance()->where('user_id','=', \Illuminate\Support\Facades\Auth::user()->id)->count() > 0)
@@ -155,8 +152,8 @@
                                         <button type="submit" class="yooty-small-BTN message-list-button-green w-message-list-button">Conversation</button>
                                     </a>
                                 @endif
-                            @elseif($ids > 0)
-                                <!--  You ALREADY made the offer  -->
+                            @elseif(DB::table('message_user')->where('message_id',$message->message_id)->where('user_id','=', \Illuminate\Support\Facades\Auth::user()->id)->count() > 0)
+                                <!--  You already made the offer  -->
                                 <form action="{{route('messages.show', ['id' => $message->message_id])}}" target="_self">
                                     <button type="submit" class="yooty-small-BTN message-list-button-orange inactive w-message-list-button">En attente</button>
                                 </form>
@@ -164,11 +161,13 @@
                             @else
                                 <!--  You CAN make an offer  -->
                                 @if($message->assistance()->where('message_id','=', $message->message_id)->count() > 0)
+                                    <!-- the message have the offers -->
                                     <form action="{{route('messages.show', ['id' => $message->message_id])}}" target="_self">
                                         <button type="submit" class="yooty-small-BTN message-list-button-orange w-message-list-button">Postuler</button>
                                     </form>
                                     <!--<div class="qestion-rang" id="QuestionRang">Question rang 50</div>-->
                                 @else
+                                    <!-- the message don't have the offers -->
                                     <form action="{{route('messages.show', ['id' => $message->message_id])}}" target="_self">
                                         <button type="submit" class="yooty-small-BTN message-list-button-yellow w-message-list-button">Postuler</button>
                                     </form>

@@ -90,6 +90,106 @@
             <div class="spacer"></div>
         </div>
     </section>
+
+
+{{-- iOS install prompt banner block --}}
+    <!-- iOS install banner -->
+    <div id="iOSinstallBanner" class="iOSinstallBanner"
+         style="
+                display: none;
+                background-color: #E4E4E4;
+                border: 0 solid #F9F9F9;
+                border-radius: 10px;
+                color: #131313;
+                position: fixed;
+                width: 90vw;
+                padding: 15px;
+                bottom:20px;
+                left: 5vw;
+                z-index: 9999;
+                box-shadow: 0 0 30px 0 rgba(0,0,0,0.35);
+            ">
+
+        <div>
+            <div class="d-inline-block vert-top" style="width: 32px">
+                <img src="{{ asset('images/add_plus.svg') }}" width="100%" height="auto">
+            </div>
+            <div class="d-inline-block vert-top" style="width: calc(100% - 55px); margin-left: 15px">
+                <span class="f-14">Installez cette webapp sur votre iPhone :</span>
+                <br/>
+                <span class="f-14">
+                        tapez <img src="{{ asset('images/Share.svg') }}" width="32" height="auto" class="icon-install-banner"> et ensuite
+                        <br/>
+                        "Ajouter à l'écran d'accueil" <img src="{{ asset('images/Add.svg') }}" width="32" height="auto" class="icon-install-banner">
+                    </span>
+            </div>
+        </div>
+        <div style="
+                background-image: url(../images/bannerarr.svg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                position: fixed;
+                bottom: 1px;
+                left: 50%;
+                margin-left: -20px;
+                width: 40px;
+                height: 40px;
+            ">
+        </div>
+
+        <div id="closeIosBanner">
+            <div class="w-100 text-center f-14 text-uppercase" onclick=" document.getElementsByClassName('iOSinstallBanner')[0].style='display: none;' " >
+                <hr class="w-25" />
+                Plus tard
+            </div>
+        </div>
+    </div>
+
+    <!-- script for iOS install banner -->
+    <script>
+        $(window).ready(function(){
+            // Detects if device is on iOS
+            const isIos = () => {
+                const userAgent = window.navigator.userAgent.toLowerCase();
+                return /iphone|ipad|ipod/.test( userAgent );
+            }
+            // Detects if device is in standalone mode
+            const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+            this.wanttoclose = false;
+
+            // Checks if should display install popup notification:
+            if (isIos() && !isInStandaloneMode()) {
+                document.getElementsByClassName('iOSinstallBanner')[0].style= "" +
+                    "display: block;" +
+                    "background-color: #E4E4E4;" +
+                    "border: 0 solid #F9F9F9;" +
+                    "border-radius: 10px;" +
+                    "color: #131313;" +
+                    "position: fixed;" +
+                    "width: 90vw;" +
+                    "padding: 15px;" +
+                    "bottom:20px;" +
+                    "left: 5vw;" +
+                    "z-index: 9999;" +
+                    "box-shadow: 0 0 30px 0 rgba(0,0,0,0.35)";
+            }
+        });
+
+        $(document).ready(
+            close = () => {
+                console.log('Close the banner');
+                if (this.wanttoclose) {
+                    document.getElementsByClassName('iOSinstallBanner')[0].style= "" +
+                        "display: none;"
+                }
+            }
+        )
+
+    </script>
+
+{{-- end --}}
+
 @endsection
 
 

@@ -15,8 +15,9 @@ class AssistanceController extends Controller
     public function apply($id)
     {
         $message = Message::find($id);
+        // dd($message->id);
         $ids = $message->assistance()->where('user_id','=', Auth::user()->id)->get(); // check if the user has already applied
-        //add in table message_user the record with data: message_id has var $message and user_id is the auth user
+        // add in table message_user the record with data: message_id has var $message and user_id is the auth user
         if(count($ids) > 0){
             return redirect()->route('messages.show', $id)->withMessage('You already applied.');
         }else{
